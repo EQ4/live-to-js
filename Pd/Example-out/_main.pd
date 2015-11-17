@@ -1,0 +1,4 @@
+#N canvas 203 222 450 300 10;
+#X declare -path abs;
+#X obj 32 19 declare -path abs;
+#X obj 32 40 u_samplebank Dolak-sample Dolak-sample.wav;
