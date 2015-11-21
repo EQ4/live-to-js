@@ -30,7 +30,7 @@ def parseLiveXML(file):
     for node in root.findall(".//SampleRef/FileRef/Name"):
         # Get the name of the sample and add it to the samples array
         sampleName = node.attrib.get("Value")
-        samples.append(sampleName)
+        samples.append(sampleName.replace(" ", "_"))
     
     print "Samples: ", samples
 
@@ -38,7 +38,7 @@ def parseLiveXML(file):
     for node in root.findall(".//Tracks/AudioTrack/Name/EffectiveName"):
         trackName = node.attrib.get("Value")
         # To do: remove whitespace from track name
-        tracks.append(trackName)
+        tracks.append(trackName.replace(" ", "_"))
 
     print "Tracks: ", tracks
 
@@ -62,7 +62,7 @@ def generatePdPatch(path):
     # Starting y-pos for objects
     yPos = 60
     # Create a samplebank object for each sample
-    for sample in samples:
+    for sample in list(set(samples)):
         sampleObj = "#X obj 30 "+str(yPos)+" u_samplebank "+sample+";\n"
         file.write(sampleObj)
         yPos = yPos+20
@@ -74,10 +74,12 @@ def generatePdPatch(path):
     file.write("#N canvas 30 70 450 300 tracks 0;\n")
     # Starting y-pos for objects
     yPos = 60
-    # Create a samplebank object for each sample
+    # Create a subpatch for each track
     for track in tracks:
         trackObj = "#X obj 30 "+str(yPos)+" u_track "+track+";\n"
         file.write(trackObj)
+        # restoreObj = "#X restore 30 "+str(yPos)+" pd "+track+";\n"
+        # file.write(restoreObj)
         yPos = yPos+20
     # Close subpatch
     file.write("#X restore 30 70 pd tracks;\n")

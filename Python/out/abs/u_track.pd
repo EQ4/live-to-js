@@ -1,0 +1,17 @@
+#N canvas 186 118 272 284 10;
+#X obj 53 95 s_playtable2;
+#X obj 53 157 throw~ out-left;
+#X obj 87 177 throw~ out-right;
+#X obj 53 136 *~;
+#X obj 87 137 *~;
+#X obj 136 111 lop~ 10;
+#X obj 136 90 r \$1-vol;
+#X obj 53 43 r \$1-playtable;
+#X connect 0 0 3 0;
+#X connect 0 1 4 0;
+#X connect 3 0 1 0;
+#X connect 4 0 2 0;
+#X connect 5 0 4 1;
+#X connect 5 0 3 1;
+#X connect 6 0 5 0;
+#X connect 7 0 0 0;

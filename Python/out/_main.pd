@@ -1,0 +1,17 @@
+#N canvas 203 222 450 300 10;
+#X declare -path abs;
+#X declare -path audio;
+#N canvas 30 30 450 300 init 0;
+#X obj 30 30 declare -path abs;
+#X obj 30 50 declare -path audio;
+#X restore 30 30 pd init;
+#N canvas 30 50 450 300 samplebanks 0;
+#X obj 30 60 u_samplebank Bass-sample.wav;
+#X obj 30 80 u_samplebank Dolak-sample.wav;
+#X restore 30 50 pd samplebanks;
+#N canvas 30 70 450 300 tracks 0;
+#X obj 30 60 u_track Track_One;
+#X obj 30 80 u_track Track_Two;
+#X restore 30 70 pd tracks;
+#X obj 30 90 u_timebase;
+#X obj 30 110 u_output;

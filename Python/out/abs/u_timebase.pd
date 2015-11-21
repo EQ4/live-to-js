@@ -1,0 +1,11 @@
+#N canvas 186 118 193 205 10;
+#X obj 53 40 r timebase-on;
+#X obj 53 62 metro 100;
+#X obj 53 84 f;
+#X obj 79 84 + 1;
+#X obj 53 106 s tick;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
